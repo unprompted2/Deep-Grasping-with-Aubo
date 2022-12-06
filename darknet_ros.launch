@@ -11,4 +11,10 @@
 
   <!-- ROS and network parameter files -->
   <arg name="ros_param_file"             default="$(find darknet_ros)/config/ros.yaml"/>
-  <arg name="n
+  <arg name="network_param_file"         default="$(find darknet_ros)/config/yolov3.yaml"/>
+
+  <!-- Load parameters -->
+  <rosparam command="load" ns="darknet_ros" file="$(arg ros_param_file)"/>
+  <rosparam command="load" ns="darknet_ros" file="$(arg network_param_file)"/>
+
+  <!-- Start darknet 
