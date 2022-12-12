@@ -30,4 +30,24 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  messa
+  message_filters
+  geometry_msgs
+  message_generation
+)
+
+catkin_package(
+  LIBRARIES
+    interactivity_utils
+  INCLUDE_DIRS
+    ${THIS_PACKAGE_INCLUDE_DIRS}
+  CATKIN_DEPENDS
+    moveit_core
+    moveit_visual_tools
+    moveit_ros_planning_interface
+    interactive_markers
+  DEPENDS
+    EIGEN3
+)
+
+include_directories(${catkin_INCLUDE_DIRS})
+##cat
