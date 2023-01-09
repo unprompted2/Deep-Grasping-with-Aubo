@@ -33,4 +33,7 @@
     <group_state name="gripper_home" group="gripper">
         <joint name="gripper_finger1_joint" value="0" />
         <joint name="gripper_finger2_joint" value="0" />
-    </grou
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="gripper" parent_link="wrist3_Link" group="gripper" parent_group="aubo_arm" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of 
