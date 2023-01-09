@@ -27,4 +27,10 @@
         <joint name="shoulder_joint" value="0" />
         <joint name="upperArm_joint" value="0" />
         <joint name="wrist1_joint" value="0" />
-        <join
+        <joint name="wrist2_joint" value="0" />
+        <joint name="wrist3_joint" value="0" />
+    </group_state>
+    <group_state name="gripper_home" group="gripper">
+        <joint name="gripper_finger1_joint" value="0" />
+        <joint name="gripper_finger2_joint" value="0" />
+    </grou
