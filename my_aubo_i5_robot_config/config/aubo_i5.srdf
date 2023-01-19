@@ -39,4 +39,8 @@
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="pedestal_Link" />
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
-    <passive_join
+    <passive_joint name="gripper_finger1_inner_knuckle_joint" />
+    <passive_joint name="gripper_finger1_finger_tip_joint" />
+    <passive_joint name="gripper_finger2_inner_knuckle_joint" />
+    <passive_joint name="gripper_finger2_finger_tip_joint" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any 
