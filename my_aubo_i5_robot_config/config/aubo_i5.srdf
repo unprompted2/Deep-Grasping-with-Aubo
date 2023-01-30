@@ -43,4 +43,6 @@
     <passive_joint name="gripper_finger1_finger_tip_joint" />
     <passive_joint name="gripper_finger2_inner_knuckle_joint" />
     <passive_joint name="gripper_finger2_finger_tip_joint" />
-    <!--DISABLE COLLISIONS: By default it is assumed that any 
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="pedestal_Link" reason="Adjacent" />
+    <disable_collisions link1="base_
