@@ -48,4 +48,7 @@
     <disable_collisions link1="base_link" link2="shoulder_Link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="upperArm_Link" reason="Never" />
     <disable_collisions link1="foreArm_Link" link2="upperArm_Link" reason="Adjacent" />
-    <disable_collisions link1="foreArm_Link" link2="wrist1_Link"
+    <disable_collisions link1="foreArm_Link" link2="wrist1_Link" reason="Adjacent" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link
