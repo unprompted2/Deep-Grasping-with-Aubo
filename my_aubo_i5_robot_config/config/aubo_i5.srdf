@@ -110,4 +110,7 @@
     <disable_collisions link1="gripper_finger2_inner_knuckle_link" link2="wrist3_Link" reason="Never" />
     <disable_collisions link1="gripper_finger2_knuckle_link" link2="wrist1_Link" reason="Never" />
     <disable_collisions link1="gripper_finger2_knuckle_link" link2="wrist2_Link" reason="Never" />
-    <disable_collision
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="wrist3_Link" reason="Never" />
+    <disable_collisions link1="pedestal_Link" link2="shoulder_Link" reason="Never" />
+    <disable_collisions link1="shoulder_Link" link2="upperArm_Link" reason="Adjacent" />
+    <disable_collisions link1="shoulder_Link" link2="wrist1_Link" reaso
