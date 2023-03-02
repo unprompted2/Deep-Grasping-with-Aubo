@@ -1,0 +1,2 @@
+aubo_arm:
+  kinematics_solver: kdl_kinematics_plugin/KDL
