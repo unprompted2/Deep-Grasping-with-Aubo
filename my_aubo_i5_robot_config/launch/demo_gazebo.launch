@@ -18,4 +18,10 @@
   -->
   <arg name="use_gui" default="false" />
 
-  <!-- Gazebo specific optio
+  <!-- Gazebo specific options -->
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="paused" default="false"/>
+  <!-- By default, use the urdf location provided from the package -->
+  <arg name="urdf_path" default="$(find aubo_description)/urdf/aubo_i5_gripper.urdf"/>
+
+  <!-- launch the gazebo simulato
