@@ -31,4 +31,12 @@
     <arg name="urdf_path" value="$(arg urdf_path)"/>
   </include>
 
-  <!--
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find my_aubo_i5_robot_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="false"/>
+  </include>
+
+  <!-- If needed, broadcast static tf for robot root -->
+  
+
+  <!-- W
