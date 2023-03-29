@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- The planning and execution components of MoveIt! configured to run -->
+  <!-- using the ROS-Industrial interface. -->
+ 
+  <rosparam command="load" file="$(find my_aubo_i5_robot_config)/config/joint_names.yaml"/>
+
+  <!-- the 
