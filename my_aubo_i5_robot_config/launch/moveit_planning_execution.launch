@@ -11,4 +11,10 @@
   <arg name="robot_ip"/>
  
   <!-- load the robot_description parameter before launching ROS-I nodes -->
-  <include file="$(
+  <include file="$(find my_aubo_i5_robot_config)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+
+ <!-- industrial_robot_simulator: accepts robot commands and reports status -->
+  <node pkg="aubo_controller" type="aubo_robot_simulator" name="aubo_robot_simu
