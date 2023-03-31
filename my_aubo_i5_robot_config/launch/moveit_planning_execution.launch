@@ -27,4 +27,11 @@
   <!--   - replace these calls with appropriate robot-specific calls or launch files -->
   <!--<group unless="$(arg sim)">
     <include file="$(find aubo_i5_moveit_config)/launch/robot_interface.launch" >
-      <arg name="robo
+      <arg name="robot_ip" value="$(arg robot_ip)"/>
+    </include>
+  </group> -->
+
+ <!-- publish the robot state (tf transforms) -->
+  <node name="aubo_driver" pkg="aubo_driver" type="aubo_driver" >
+  <param name="/server_host" type="str" value="$(arg robot_ip)"/>
+  <!--<param name="/server_host" value="127
