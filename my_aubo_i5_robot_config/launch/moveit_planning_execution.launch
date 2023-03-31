@@ -23,4 +23,8 @@
   <node pkg="aubo_controller" type="aubo_joint_trajectory_action" name="aubo_joint_trajectory_action"/>
 
   <!-- run the "real robot" interface nodes -->
-  <!--   - this typically includes: r
+  <!--   - this typically includes: robot_state, motion_interface, and joint_trajectory_action nodes -->
+  <!--   - replace these calls with appropriate robot-specific calls or launch files -->
+  <!--<group unless="$(arg sim)">
+    <include file="$(find aubo_i5_moveit_config)/launch/robot_interface.launch" >
+      <arg name="robo
