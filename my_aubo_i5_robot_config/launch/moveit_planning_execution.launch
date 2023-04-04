@@ -51,4 +51,6 @@
 
   
   
-  <!--<include file="$(find aubo_i5_moveit_config)/launch/default_warehouse_db.launc
+  <!--<include file="$(find aubo_i5_moveit_config)/launch/default_warehouse_db.launch" />-->
+
+</launch>
