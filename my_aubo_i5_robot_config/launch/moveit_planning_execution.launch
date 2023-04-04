@@ -41,4 +41,14 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
   <include file="$(find my_aubo_i5_robot_config)/launch/move_group.launch">
-    <arg name="publish_monitored_planning_sce
+    <arg name="publish_monitored_planning_scene" value="true" />
+  </include>
+
+  <include file="$(find my_aubo_i5_robot_config)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>
+  
+
+  
+  
+  <!--<include file="$(find aubo_i5_moveit_config)/launch/default_warehouse_db.launc
