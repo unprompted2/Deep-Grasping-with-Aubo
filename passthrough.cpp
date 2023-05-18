@@ -184,3 +184,95 @@ if(endCallback1 == 0){
   ec.setInputCloud (xyzCloudPtrRansacFiltered);
   // exctract the indices pertaining to each cluster and store in a vector of pcl::PointIndices
   ec.extract (cluster_indices);
+  sensor_msgs::PointCloud2 output; 
+
+
+  pcl::PCLPointCloud2 outputPCL;
+
+  int EuclideanDistance, distance_x, distance_y;
+  int threshold = 30;
+
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_cluster (new pcl::PointCloud<pcl::PointXYZRGB>); 
+for (std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin (); it != cluster_indices.end (); ++it) 
+{ 
+    Eigen::Vector4f centroid3D;
+    Eigen::Vector2i centroid2D;
+    Eigen::Matrix3f camera_matrix;
+    //camera matrix that was created by the intrisic camera calibration step. This will be needed to translate from 3D centroid to 2D centroid
+    camera_matrix <<  547.471175, 0.000000, 313.045026, 0.000000, 547.590335, 237.016225, 0.000000, 0.000000, 1.000000;
+    
+    //puts the clusters into cloud_cluster
+    for (std::vector<int>::const_iterator pit = it->indices.begin (); pit != it->indices.end (); ++pit)
+    {
+        cloud_cluster->points.push_back (xyzCloudPtrRansacFiltered->points[*pit]); 
+    }    
+    cloud_cluster->width = cloud_cluster->points.size (); 
+    cloud_cluster->height = 1; 
+    cloud_cluster->is_dense = true; 
+    //std::cout << "PointCloud representing the Cluster: " << cloud_cluster->points.size () << " data points." << std::endl; 
+    //a pcl funciton to comput the 3D centroid and save it as centroid3D
+    pcl::compute3DCentroid(*xyzCloudPtrRansacFiltered, *it, centroid3D);
+    
+    Eigen::Vector2i pixel_position;
+    //next two lines convert centroid3D to pixel cordinates, and saves into variable pixel_position
+    pixel_position(0) = (int)(centroid3D(0)*camera_matrix(0,0)/centroid3D(2) + camera_matrix(0,2));
+    pixel_position(1) = (int)(centroid3D(1)*camera_matrix(1,1)/centroid3D(2) + camera_matrix(1,2));
+    
+    centroid2D = pixel_position;
+
+    //This is the calculation to find the Euclidean Distance between centroids and yolo bounding box center points
+    distance_x = abs(YoloCenterPointX - centroid2D(0));
+    std::cout << "YOlo centerx " << YoloCenterPointX << std::endl;
+    std::cout << "controidx " << centroid2D(0) << std::endl;
+    std::cout <<  "The distance in x axis: " << distance_x << std::endl;
+    distance_y = abs(YoloCenterPointY - centroid2D(1));
+    std::cout <<  "The distance in y axis: " << distance_y << std::endl;
+    EuclideanDistance = sqrt(pow(distance_x, 2) + pow(distance_y, 2));
+    std::cout <<  "The aggregated distance: " << EuclideanDistance << std::endl;
+    //if object euclidean distance is less then threshhold the cluster will be published as a rostopic that we can now visualize in rviz. 
+    if(EuclideanDistance < threshold){
+        pcl::toPCLPointCloud2 (*cloud_cluster, outputPCL); 
+        pcl_conversions::fromPCL(outputPCL, output);
+        output.header.frame_id = "/camera_rgb_optical_frame";
+
+        ros::Rate loop_rate(1);
+        while(ros::ok()){
+            pub.publish(output);
+            ros::spinOnce();
+            loop_rate.sleep();
+        }
+
+    }
+    
+    //centroid2D = point3Dto_pixel(centroid3D, camera_matrix);
+
+
+}
+ //end of call back function
+endCallback1++;
+
+}
+}
+
+
+
+
+int main (int argc, char** argv){
+// Initialize ROS
+ros::init (argc, argv, "my_pcl_tutorial");
+ros::NodeHandle nh;
+ros::NodeHandle m_nh;
+
+//subscribe to the pointcloud
+ros::Subscriber sub = nh.subscribe ("/camera_remote/depth_registered/points", 1, cloud_cb);
+//subscribe to the bouding boxes from darknet_ros
+ros::Subscriber object_detection = m_nh.subscribe("/darknet_ros/bounding_boxes", 1, cloud_cb_2);
+//publishes the filterd point cloud clusterd of the selected object and publish is as rostopic /output_filtered_cloud.
+pub = nh.advertise<sensor_msgs::PointCloud2> ("output_filtered_cloud", 10);
+
+ros::spin();
+
+
+
+
+}
