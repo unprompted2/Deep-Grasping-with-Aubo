@@ -30,4 +30,5 @@ for path_and_filename in glob.iglob(os.path.join(current_dir, '*.jpg')):
         file_test.write('/home/nicholasward2/darknet/build/darknet/x64/data/obj' + '/' + title + '.jpg' + '\n')
         
     else: 
-        file_train.write('/home/nicholas
+        file_train.write('/home/nicholasward2/darknet/build/darknet/x64/data/obj' + '/' + title + '.jpg' + '\n')
+        counter = counter + 1
