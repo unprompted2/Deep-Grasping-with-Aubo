@@ -1,0 +1,4 @@
+<launch>
+  <node name="detect_grasps" pkg="gpd_ros" type="detect_grasps" output="screen">
+
+    <!-- If 
