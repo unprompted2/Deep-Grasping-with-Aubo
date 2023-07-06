@@ -17,4 +17,12 @@ The project requires certain installations. Links to these are provided below.
 - [Moveit](https://moveit.ros.org/install/)
 - [PCL](https://www.programmersought.com/article/52981999118/) >= 1.7
 - [Aruco_Ros](https://github.com/pal-robotics/aruco_ros)
-- [Aubo_I5_Driver](https://github.com/AuboRobot/aubo_r
+- [Aubo_I5_Driver](https://github.com/AuboRobot/aubo_robot)
+- [Aubo I5 Model](https://github.com/hai-h-nguyen/aubo-i5-full)
+
+## Hardware Implementation
+- Asus Xtion Pro RGB-D Camera
+- Aubo I5 Robot
+- Robotiq 85 Gripper
+
+For detailed steps on implementing and resolving potential issues during the project's set up, please refer to the readme.md in the repository.
